@@ -1,0 +1,3 @@
+get_ethnicities         Classifies names based on 6 U.S. ethnicities
+get_gender              Classifies names based on gender
+get_nationalities       Classifies names based on 39 leaf nationalities
