@@ -1,0 +1,4 @@
+name	user	system	elapsed
+get_ethnicities	0.138	0.023	5.025	
+get_gender	0	0	0	
+get_nationalities	0.096	0.016	4.773	
