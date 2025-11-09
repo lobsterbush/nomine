@@ -31,7 +31,7 @@ get_gender <- function(given, family, api_key) {
                       given[i], "/", family[i])
     r <- httr::GET(address, httr::add_headers(`X-API-KEY` = api_key))
     r <- httr::content(r, "parse")
-    gender[i, ] <- c(i, given[i], family[i], address, r$scale, r$genderScale)
+    gender[i, ] <- c(i, given[i], family[i], address, r$genderScale, r$likelyGender)
     setTxtProgressBar(pb, i)
   }
   return(gender)
