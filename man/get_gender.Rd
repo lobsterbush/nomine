@@ -11,7 +11,7 @@ get_gender(given, family, api_key)
 
 \item{family}{A vector of family names (i.e. surnames or last names).}
 
-\item{api_key}{A NameSor API Key. This is typically a long string of mixed-case letters and numbers. Get yours at https://v2.namsor.com/NamSorAPIv2/sign-in.html}
+\item{api_key}{A NameSor API Key. This is typically a long string of mixed-case letters and numbers. Get yours at \url{https://namsor.app/}}
 }
 \value{
 An object that classifies inputted names according to gender.

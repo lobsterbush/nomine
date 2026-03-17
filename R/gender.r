@@ -4,7 +4,7 @@
 #'@author Charles Crabtree \email{ccrabtr@umich.edu}
 #'@param given A vector of given names (i.e. first names).
 #'@param family A vector of family names (i.e. surnames or last names).
-#'@param api_key A NameSor API Key. This is typically a long string of mixed-case letters and numbers. Get yours at https://v2.namsor.com/NamSorAPIv2/sign-in.html
+#'@param api_key A NameSor API Key. This is typically a long string of mixed-case letters and numbers. Get yours at \url{https://namsor.app/}
 #'@return An object that classifies inputted names according to gender.
 #'@examples
 #' \dontrun{

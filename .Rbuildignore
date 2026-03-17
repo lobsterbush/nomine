@@ -9,4 +9,10 @@
 ^paper$
 ^License\.md$
 ^NEWS\.md$
-MIGRATION_NOTES.md
+^MIGRATION_NOTES\.md$
+^API_TESTING_GUIDE\.md$
+^CRAN_SUBMISSION_INSTRUCTIONS\.md$
+^FINAL_SUMMARY\.md$
+^NAMSOR_V2_CAPABILITIES\.md$
+^test_api_responses\.R$
+^WARP\.md$

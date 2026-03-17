@@ -1,5 +1,5 @@
-![](http://www.r-pkg.org/badges/version/nomine) ![](http://cranlogs.r-pkg.org/badges/grand-total/nomine) ![](http://cranlogs.r-pkg.org/badges/nomine)
-[![DOI](https://zenodo.org/badge/105415000.svg)](https://zenodo.org/badge/latestdoi/105415000)[![Rdoc](http://www.rdocumentation.org/badges/version/nomine)](http://www.rdocumentation.org/packages/nomine)
+![](https://www.r-pkg.org/badges/version/nomine) ![](https://cranlogs.r-pkg.org/badges/grand-total/nomine) ![](https://cranlogs.r-pkg.org/badges/nomine)
+[![DOI](https://zenodo.org/badge/105415000.svg)](https://zenodo.org/badge/latestdoi/105415000)[![Rdoc](https://www.rdocumentation.org/badges/version/nomine)](https://www.rdocumentation.org/packages/nomine)
 
 # nomine: Functions to classify names based on gender, 6 U.S. ethnicities, or 39 leaf nationalities.
 
@@ -11,15 +11,15 @@ Unfortunately, most of the available name classifiers are very expensive to use.
 
 ### APIs Used
 
-**[NamePrism](http://name-prism.com/)** - A non-commercial program for academic research
+**[NamePrism](https://name-prism.com/)** - A non-commercial program for academic research
 - **Cost:** Free with API token (60 requests/minute rate limit)
-- **Get token:** [http://www.name-prism.com/api](http://www.name-prism.com/api)
+- **Get token:** [https://www.name-prism.com/api](https://www.name-prism.com/api)
 - **Used for:** Ethnicity and nationality classification
 - **Reference:** [Ye et al 2017](https://arxiv.org/abs/1708.07903)
 
-**[NamSor v2](https://v2.namsor.com/)** - Commercial API with free tier
+**[NamSor](https://namsor.app/)** - Commercial API with free tier
 - **Cost:** 5,000 units/month free (gender = 1 unit/name)
-- **Get API key:** [https://v2.namsor.com/NamSorAPIv2/sign-in.html](https://v2.namsor.com/NamSorAPIv2/sign-in.html)
+- **Get API key:** [https://namsor.app/](https://namsor.app/)
 - **Used for:** Gender classification
 - **Info:** [https://github.com/namsor/namsor-api](https://github.com/namsor/namsor-api)
 
@@ -38,7 +38,7 @@ Classify names by **39 leaf nationalities** using NamePrism.
 - **Input:** Vector of full names ("First Last")
 - **Returns:** Probabilities for 39 cultural/national origin categories
 - **Cost:** Free (rate-limited)
-- **Categories:** See [http://name-prism.com/about](http://name-prism.com/about)
+- **Categories:** See [https://name-prism.com/about](https://name-prism.com/about)
 
 ### `get_gender(given, family, api_key)`
 Classify names by **gender** using NamSor v2.
@@ -60,8 +60,8 @@ devtools::install_github("lobsterbush/nomine")
 
 ### Get API Keys First
 ```r
-# Get your NamePrism token: http://www.name-prism.com/api
-# Get your NamSor API key: https://v2.namsor.com/NamSorAPIv2/sign-in.html
+# Get your NamePrism token: https://www.name-prism.com/api
+# Get your NamSor API key: https://namsor.app/
 ```
 
 ### Classify Ethnicities
@@ -137,7 +137,7 @@ The package uses **NamePrism** for ethnicity/nationality because it's free and d
 - Updated NamePrism API calls to use HTTPS (the HTTP endpoints no longer work)
 - Updated NamSor API to v2 with new authentication method
 - The `get_gender()` function now requires only a single `api_key` parameter instead of separate `secret` and `user` parameters
-- Get your NamSor API key at: https://v2.namsor.com/NamSorAPIv2/sign-in.html
+- Get your NamSor API key at: https://namsor.app/
 
 ## Support or Contact
 Please use the issue tracker for problems, questions, or feature requests. If you would rather email with questions or comments, you can contact [Charles Crabtree](mailto:crabtreedcharles@gmail.com) or [Christian Chacua](mailto:christian-mauricio.chacua-delgado@u-bordeaux.fr) and they will try to address the issue.
@@ -148,4 +148,4 @@ If you would like to contribute to the package, that is great! We welcome pull r
 Users and potential contributors can test the software with the example code provided in the documentation for each function.
 
 ## Thanks
-Thanks to [Karl Broman](https://github.com/kbroman) and [Hadley Wickham](http://hadley.nz/) for providing excellent free guies to building R packages.
+Thanks to [Karl Broman](https://github.com/kbroman) and [Hadley Wickham](https://hadley.nz/) for providing excellent free guides to building R packages.
