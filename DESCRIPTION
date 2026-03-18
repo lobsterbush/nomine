@@ -3,7 +3,7 @@ Type: Package
 Title: Classify Names by Gender, U.S. Ethnicity, and Leaf Nationality
 Version: 1.0.2
 Authors@R: c(person("Charles", "Crabtree", role = c("aut", "cre"),
-                     email = "crabtreedcharles@gmail.com"),
+                     email = "charles.crabtree@monash.edu"),
               person("Volha", "Chykina", role = c("aut")),
               person("Micah", "Gell-Redman", role = c("aut")),
               person("Christian", "Chacua", role = c("aut"), email = "christian-mauricio.chacua-delgado@u-bordeaux.fr"))
