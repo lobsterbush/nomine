@@ -71,8 +71,10 @@ footer .provenance-label { color: var(--repllm-navy); }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
 @media print { .navbar, aside, .hero-links { display: none; } main { width: 100% !important; } }
-/* The package badge is kept in the source; the site uses a typographic wordmark. */
-.page-header .logo { display: none; }
+/* Package identity is distinct from the authorship provenance label. */
+.template-home .page-header, .template-home .page-header h1 { display: flow-root; }
+.template-home .page-header img.logo { display: block; float: right; width: 140px; height: 140px; margin: 0 0 0 1rem; object-fit: contain; }
+@media (max-width: 480px) { .template-home .page-header img.logo { width: 100px; height: 100px; } }
 p, li, .hero-summary { hyphens: none; }
 
 .navbar { transform: none !important; }

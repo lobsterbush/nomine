@@ -3,7 +3,9 @@
 ![](https://www.r-pkg.org/badges/version/nomine) ![](https://cranlogs.r-pkg.org/badges/grand-total/nomine) ![](https://cranlogs.r-pkg.org/badges/nomine)
 [![DOI](https://zenodo.org/badge/105415000.svg)](https://zenodo.org/badge/latestdoi/105415000)[![Rdoc](https://www.rdocumentation.org/badges/version/nomine)](https://www.rdocumentation.org/packages/nomine)
 
-# nomine: Functions to classify names based on gender, 6 U.S. ethnicities, or 39 leaf nationalities.
+# nomine: Functions to classify names based on gender, 6 U.S. ethnicities, or 39 leaf nationalities. <a href="https://lobsterbush.github.io/nomine/"><img src="man/figures/logo.png" align="right" width="140" alt="nomine hex sticker" /></a>
+
+[Package documentation](https://lobsterbush.github.io/nomine/) · [Function reference](https://lobsterbush.github.io/nomine/reference/index.html)
 
 Large social science literatures are devoted to examining the role of an individual's gender, ethnicity, or nationality on a host of behaviors and circumstances. This means that researchers often want to know these characteristics of individuals. Not all pre-existing datasets contain this information, though, and it can be difficult for scholars to locate, particularly if they work with exotic samples. 
 
