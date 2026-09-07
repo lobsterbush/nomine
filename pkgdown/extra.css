@@ -78,4 +78,4 @@ p, li, .hero-summary { hyphens: none; }
 .navbar { transform: none !important; }
 .template-home .repllm-hero + hr { display: none; }
 
-.provenance-badge { width: 330px; max-width: 100%; height: auto; }
+.provenance-badge, img[src$="provenance.svg"] { width: 330px; max-width: 100%; height: auto; }
