@@ -66,3 +66,9 @@ This is an R package that provides functions to classify names based on gender, 
 - NamePrism rate limit: 60 requests/minute
 - Batch API calls appropriately to respect rate limits
 - Include timing estimates in documentation for large batches
+
+
+## Documentation
+
+Build locally with `source(here::here("data-raw", "01_build_site.R"))`.
+GitHub Pages serves `gh-pages`. Declared provenance: Human > AI 👤>🤖.

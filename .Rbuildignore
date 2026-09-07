@@ -17,3 +17,7 @@
 ^test_api_responses\.R$
 ^WARP\.md$
 ^CRAN-SUBMISSION$
+^_pkgdown\.yml$
+^pkgdown$
+^docs$
+^data-raw$

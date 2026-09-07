@@ -1,3 +1,5 @@
+[![nomine: Human > AI 👤>🤖](man/figures/provenance.svg)](https://thelatentreview.com/provenance/)
+
 ![](https://www.r-pkg.org/badges/version/nomine) ![](https://cranlogs.r-pkg.org/badges/grand-total/nomine) ![](https://cranlogs.r-pkg.org/badges/nomine)
 [![DOI](https://zenodo.org/badge/105415000.svg)](https://zenodo.org/badge/latestdoi/105415000)[![Rdoc](https://www.rdocumentation.org/badges/version/nomine)](https://www.rdocumentation.org/packages/nomine)
 
@@ -149,3 +151,27 @@ Users and potential contributors can test the software with the example code pro
 
 ## Thanks
 Thanks to [Karl Broman](https://github.com/kbroman) and [Hadley Wickham](https://hadley.nz/) for providing excellent free guides to building R packages.
+
+
+## Documentation and provenance
+
+Browse the [documentation and function reference](https://lobsterbush.github.io/nomine/).
+
+**Human > AI 👤>🤖** — declared by Charles Crabtree: human led, with meaningful
+AI contributions to the work and ideas. This declaration covers the package
+and its documentation; the documentation build used OpenAI Codex.
+The label follows [The Latent Review’s provenance standard](https://thelatentreview.com/provenance/),
+shared under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+The software remains MIT licensed.
+
+## Build the documentation
+
+Install R and the package dependencies listed in `DESCRIPTION`, then install
+`pkgdown` and `here`. From the repository root, run:
+
+```r
+source(here::here("data-raw", "01_build_site.R"))
+```
+
+The site is built locally in `docs/`. Publish the rendered contents to the
+`gh-pages` branch; GitHub Pages serves that branch. No Actions workflow is needed.

@@ -18,5 +18,5 @@ Imports:
 RoxygenNote: 7.3.3
 Suggests: knitr,
     rmarkdown
-URL: https://github.com/lobsterbush/nomine
+URL: https://lobsterbush.github.io/nomine/, https://github.com/lobsterbush/nomine
 BugReports: https://github.com/lobsterbush/nomine/issues
