@@ -4,7 +4,7 @@
 
 pkgdown::init_site()
 pkgdown::build_home()
-pkgdown::build_reference(examples = FALSE)
+pkgdown::build_reference(examples = FALSE, lazy = FALSE)
 pkgdown::build_news()
 
 # Publish only user-facing pages; development notes remain in the repository.

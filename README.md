@@ -1,4 +1,4 @@
-[![nomine: Human > AI 👤>🤖](man/figures/provenance.svg)](https://thelatentreview.com/provenance/)
+[![nomine: Human – AI (editor) 👤✏️🤖](man/figures/provenance.svg)](https://thelatentreview.com/provenance/)
 
 ![](https://www.r-pkg.org/badges/version/nomine) ![](https://cranlogs.r-pkg.org/badges/grand-total/nomine) ![](https://cranlogs.r-pkg.org/badges/nomine)
 [![DOI](https://zenodo.org/badge/105415000.svg)](https://zenodo.org/badge/latestdoi/105415000)[![Rdoc](https://www.rdocumentation.org/badges/version/nomine)](https://www.rdocumentation.org/packages/nomine)
@@ -157,9 +157,12 @@ Thanks to [Karl Broman](https://github.com/kbroman) and [Hadley Wickham](https:/
 
 Browse the [documentation and function reference](https://lobsterbush.github.io/nomine/).
 
-**Human > AI 👤>🤖** — declared by Charles Crabtree: human led, with meaningful
-AI contributions to the work and ideas. This declaration covers the package
-and its documentation; the documentation build used OpenAI Codex.
+**Human – AI (editor) 👤✏️🤖**
+
+All initial versions were created entirely by the human authors, without AI.
+AI was used only for subsequent updates and code fixes. This provenance
+declaration is supplied by Charles Crabtree.
+
 The label follows [The Latent Review’s provenance standard](https://thelatentreview.com/provenance/),
 shared under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 The software remains MIT licensed.

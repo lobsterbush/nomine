@@ -71,4 +71,4 @@ This is an R package that provides functions to classify names based on gender, 
 ## Documentation
 
 Build locally with `source(here::here("data-raw", "01_build_site.R"))`.
-GitHub Pages serves `gh-pages`. Declared provenance: Human > AI 👤>🤖.
+GitHub Pages serves `gh-pages`. Declared provenance: Human – AI (editor) 👤✏️🤖.
