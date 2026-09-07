@@ -1,18 +1,25 @@
 #--- Get name ethnicities function ---#
-#'@title Classifies names based on 6 U.S. ethnicities
-#'@description Returns an object that classifies any inputted name(s) according to 6 different U.S. ethnicities.
+#'@title Request ethnicity probabilities from NamePrism
+#'@description Sends names to NamePrism and returns probabilities for its six U.S. ethnicity categories. These are name-based predictions, not self-reported identities.
 #'@author Charles Crabtree \email{ccrabtr@umich.edu} and Christian Chacua \email{christian-mauricio.chacua-delgado@u-bordeaux.fr}
 #'@param x A vector of names,  in the form "First_name Last_name". If there are multiple segments separated by white spaces, only the first and the last segments are taken into account.
-#'@param t A string with the API access token. The default value is NULL, although you must set your own token. A Name-Prism API token can be obtained for research purposes to overcome the limit of anonymous API use. Please visit \url{https://www.name-prism.com/api} for more details.
-#'@param warnings Logical. If TRUE, then a warning message will be displayed when a name cannot be analyzed. The default value is FALSE.
+#'@param t Your NamePrism API token. You must supply one; NULL stops the call. See \url{https://www.name-prism.com/api} for more details.
+#'@param warnings If TRUE, warn when a request fails. The default is FALSE.
 #'@return A data frame of dimensions length(x)*9, with the probability of belonging to each of the 6 different U.S. ethnicities. Errors (e.g. connection is interrupted, invalid tokens) are handled as NA.
 #'@examples
-#' \dontrun{
-#' # Vector of names.
+#' # Prepare input vector of names
 #' x <- c("Charles Crabtree", "Volha Chykina", "Christian Chacua",
 #'        "Christian Mauricio Chacua")
-#' # Using the API token a1a2a34aa56789aa (you should get your own token)
-#' y <- get_ethnicities(x, t="a1a2a34aa56789aa", warnings=FALSE)
+#'
+#' # Expected output columns
+#' expected_cols <- c("input", "encoded_name", "url",
+#'                    "2PRACE", "Hispanic", "API",
+#'                    "Black", "AIAN", "White")
+#' print(expected_cols)
+#'
+#' \dontrun{
+#' # Using the API token (you should get your own token)
+#' y <- get_ethnicities(x, t = "YOUR_NAMEPRISM_TOKEN", warnings = FALSE)
 #' y
 #' # "Christian Chacua" and "Christian Mauricio Chacua" have the same
 #' # probabilities as "Mauricio" is not taken into account.

@@ -1,18 +1,23 @@
 #--- Get name leaf nationalities function ---#
-#'@title Classifies names based on 39 leaf nationalities
-#'@description Returns an object that classifies inputted names according to 39 different leaf nationalities.
+#'@title Request nationality probabilities from NamePrism
+#'@description Sends names to NamePrism and returns probabilities for its 39 leaf nationality categories.
 #'@author Charles Crabtree \email{ccrabtr@umich.edu} and Christian Chacua \email{christian-mauricio.chacua-delgado@u-bordeaux.fr}
 #'@param x A vector of names,  in the form "First_name Last_name". If there are multiple segments separated by white spaces, only the first and the last segments are taken into account.
-#'@param t A string with the API access token. The default value is NULL, although you must set your own token. A Name-Prism API token can be obtained for research purposes to overcome the limit of anonymous API use. Please visit \url{https://www.name-prism.com/api} for more details.
-#'@param warnings Logical. If TRUE, then a warning message will be displayed when a name cannot be analyzed. The default value is FALSE.
+#'@param t Your NamePrism API token. You must supply one; NULL stops the call. See \url{https://www.name-prism.com/api} for more details.
+#'@param warnings If TRUE, warn when a request fails. The default is FALSE.
 #'@return A data frame of dimensions length(x)*42, with the probability of belonging to each of the 39 different leaf CEL groups of the Name-Prism taxonomy (see \url{https://www.name-prism.com/about}). Errors (e.g. connection is interrupted, invalid tokens) are handled as NA.
 #'@examples
-#' \dontrun{
-#' # Vector of names.
+#' # Prepare input vector of names
 #' x <- c("Charles Crabtree", "Volha Chykina", "Christian Chacua",
 #'        "Christian Mauricio Chacua")
-#' # Using the API token a1a2a34aa56789aa (you should get your own token)
-#' y <- get_nationalities(x, t="a1a2a34aa56789aa", warnings=FALSE)
+#'
+#' # Expected output columns (3 metadata + 39 leaf nationalities)
+#' n_output_cols <- 42L
+#' print(n_output_cols)
+#'
+#' \dontrun{
+#' # Using the API token (you should get your own token)
+#' y <- get_nationalities(x, t = "YOUR_NAMEPRISM_TOKEN", warnings = FALSE)
 #' y
 #' # "Christian Chacua" and "Christian Mauricio Chacua" have the same
 #' # probabilities as "Mauricio" is not taken into account.

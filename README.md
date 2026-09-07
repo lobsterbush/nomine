@@ -3,153 +3,108 @@
 ![](https://www.r-pkg.org/badges/version/nomine) ![](https://cranlogs.r-pkg.org/badges/grand-total/nomine) ![](https://cranlogs.r-pkg.org/badges/nomine)
 [![DOI](https://zenodo.org/badge/105415000.svg)](https://zenodo.org/badge/latestdoi/105415000)[![Rdoc](https://www.rdocumentation.org/badges/version/nomine)](https://www.rdocumentation.org/packages/nomine)
 
-# nomine: Functions to classify names based on gender, 6 U.S. ethnicities, or 39 leaf nationalities. <a href="https://lobsterbush.github.io/nomine/"><img src="man/figures/logo.png" align="right" width="140" alt="nomine hex sticker" /></a>
+# nomine: Name-based predictions in R <a href="https://lobsterbush.github.io/nomine/"><img src="man/figures/logo.png" align="right" width="140" alt="nomine hex sticker" /></a>
 
 [Package documentation](https://lobsterbush.github.io/nomine/) · [Function reference](https://lobsterbush.github.io/nomine/reference/index.html)
 
-Large social science literatures are devoted to examining the role of an individual's gender, ethnicity, or nationality on a host of behaviors and circumstances. This means that researchers often want to know these characteristics of individuals. Not all pre-existing datasets contain this information, though, and it can be difficult for scholars to locate, particularly if they work with exotic samples. 
+We built `nomine` to request name-based predictions from NamePrism and NamSor
+without writing a separate API client. The functions return the provider's
+results in a data frame, with the input names alongside them.
 
-Even if reseachers do not have data on these theoretically important covariates for individuals, though, there in many cases in which they know individual names. Thanks to recent developments in machine learning, these names can be used to probabilistically identify the gender, ethnicity, leaf nationality, or origin of their bearers. These exciting advancements can potentially catalyze existing research programs on gender, race, ethnicity, coethnicity, and national origins.
+These predictions can help with a research task when names are the information
+we have. They don't tell us how a person identifies. I'd start by checking
+whether the provider's categories fit the question I'm asking.
 
-Unfortunately, most of the available name classifiers are very expensive to use. Thankfully, there are two free or cheap-to-use tools that this package leverages:
+Authors: Charles Crabtree, Volha Chykina, Micah Gell-Redman, and Christian Chacua.
 
-### APIs Used
+## Installation
 
-**[NamePrism](https://name-prism.com/)** - A non-commercial program for academic research
-- **Cost:** Free with API token (60 requests/minute rate limit)
-- **Get token:** [https://www.name-prism.com/api](https://www.name-prism.com/api)
-- **Used for:** Ethnicity and nationality classification
+Install the development version from GitHub:
+
+```r
+# install.packages("remotes")
+remotes::install_github("lobsterbush/nomine")
+```
+
+You'll need R and the dependencies listed in `DESCRIPTION`. API calls also need
+a network connection and your own provider credentials.
+
+## Providers
+
+[NamePrism](https://name-prism.com/) supplies probabilities over six U.S.
+ethnicity categories and 39 leaf nationality categories. Get a token through
+[its API page](https://www.name-prism.com/api).
+
 - **Reference:** [Ye et al 2017](https://arxiv.org/abs/1708.07903)
 
-**[NamSor](https://namsor.app/)** - Commercial API with free tier
-- **Cost:** 5,000 units/month free (gender = 1 unit/name)
-- **Get API key:** [https://namsor.app/](https://namsor.app/)
-- **Used for:** Gender classification
-- **Info:** [https://github.com/namsor/namsor-api](https://github.com/namsor/namsor-api)
+[NamSor](https://namsor.app/) supplies gender predictions from given and family
+names. Get an API key from [NamSor](https://namsor.app/). Its
+[API documentation](https://github.com/namsor/namsor-api) describes the service.
 
-The `nomine` package provides simple R functions to query these APIs without needing to write custom code.
+Check the providers' current access terms and charges before running a batch.
+The package doesn't set those terms.
 
-## Functions
+## Request ethnicity probabilities
 
-### `get_ethnicities(names, t, warnings = FALSE)`
-Classify names by **6 U.S. ethnicities** using NamePrism.
-- **Input:** Vector of full names ("First Last")
-- **Returns:** Probabilities for: 2PRACE, Hispanic, API, Black, AIAN, White
-- **Cost:** Free (rate-limited)
+Store your token in `NAMEPRISM_TOKEN`, then pass a vector of full names:
 
-### `get_nationalities(names, t, warnings = FALSE)`
-Classify names by **39 leaf nationalities** using NamePrism.
-- **Input:** Vector of full names ("First Last")
-- **Returns:** Probabilities for 39 cultural/national origin categories
-- **Cost:** Free (rate-limited)
-- **Categories:** See [https://name-prism.com/about](https://name-prism.com/about)
-
-### `get_gender(given, family, api_key)`
-Classify names by **gender** using NamSor v2.
-- **Input:** Vectors of first and last names
-- **Returns:** Gender classification ("male"/"female") and scale (-1 to +1)
-- **Cost:** 1 unit per name (5,000 free/month)
-
-## Package Installation
-The latest development version (1.0.2) is on GitHub and can be installed using devtools.
-
-```r
-if(!require("devtools")){
-    install.packages("devtools")
-}
-devtools::install_github("lobsterbush/nomine")
-```
-
-## Usage Examples
-
-### Get API Keys First
-```r
-# Get your NamePrism token: https://www.name-prism.com/api
-# Get your NamSor API key: https://namsor.app/
-```
-
-### Classify Ethnicities
 ```r
 library(nomine)
 
-# Example names
 names <- c("Charles Crabtree", "Volha Chykina", "Maria Garcia")
-
-# Get ethnicity probabilities
-results <- get_ethnicities(names, t = "YOUR_NAMEPRISM_TOKEN")
-
-# View results
-print(results[, c("input", "White", "Hispanic", "Black")])
-#                 input     White  Hispanic     Black
-# 1 Charles Crabtree      0.85      0.03      0.05
-# 2    Volha Chykina      0.72      0.02      0.01
-# 3     Maria Garcia      0.15      0.78      0.02
+ethnicity <- get_ethnicities(names, t = Sys.getenv("NAMEPRISM_TOKEN"))
+ethnicity[, c("input", "White", "Hispanic", "Black")]
 ```
 
-### Classify Nationalities
+The six prediction columns are `2PRACE`, `Hispanic`, `API`, `Black`, `AIAN`,
+and `White`. Those labels come from NamePrism. The values depend on the service's response.
+
+## Request nationality probabilities
+
 ```r
-# Get nationality probabilities
-results <- get_nationalities(names, t = "YOUR_NAMEPRISM_TOKEN")
-
-# View top nationality for each name
-print(results[, c("input", "CelticEnglish", "European-Russian", "Hispanic-Spanish")])
-#                 input CelticEnglish European-Russian Hispanic-Spanish
-# 1 Charles Crabtree          0.82             0.03             0.02
-# 2    Volha Chykina          0.05             0.68             0.01
-# 3     Maria Garcia          0.03             0.01             0.75
+nationality <- get_nationalities(names, t = Sys.getenv("NAMEPRISM_TOKEN"))
+names(nationality)
+head(nationality)
 ```
 
-### Classify Gender
+The output includes 39 leaf categories. See
+[NamePrism's category descriptions](https://name-prism.com/about) before
+interpreting them as a measure of national origin.
+
+## Request gender predictions
+
+NamSor takes given and family names separately. Store the key in
+`NAMSOR_API_KEY`:
+
 ```r
-# Example names (first and last separate)
-first_names <- c("Volha", "Charles", "Maria")
-last_names <- c("Chykina", "Crabtree", "Garcia")
-
-# Get gender classifications
-results <- get_gender(first_names, last_names, api_key = "YOUR_NAMSOR_KEY")
-
-# View results
-print(results[, c("first_name", "last_name", "gender", "scale")])
-#   first_name last_name gender scale
-# 1      Volha  Chykina female  0.95
-# 2    Charles Crabtree   male -0.99
-# 3      Maria   Garcia female  0.89
+gender <- get_gender(
+  given = c("Volha", "Charles", "Maria"),
+  family = c("Chykina", "Crabtree", "Garcia"),
+  api_key = Sys.getenv("NAMSOR_API_KEY")
+)
+gender[, c("first_name", "last_name", "gender", "scale")]
 ```
 
-### Cost Comparison
+Read `gender` and `scale` as outputs of the provider's classifier. The function
+help lists the returned columns.
 
-**For 1,000 names:**
+## Failed requests
 
-| Function | API | Cost | Notes |
-|----------|-----|------|---------|
-| `get_ethnicities()` | NamePrism | **Free** | Rate-limited to 60/min (~17 min total) |
-| `get_nationalities()` | NamePrism | **Free** | Rate-limited to 60/min (~17 min total) |
-| `get_gender()` | NamSor v2 | **Free** | Uses 1,000 of 5,000 free units/month |
+NamePrism requests that fail are recorded with missing prediction values.
+Set `warnings = TRUE` if you'd like a warning for each failed name. Inspect
+missing results before analysing a batch; a missing prediction isn't a zero.
 
-**For 10,000 names:**
-- Ethnicities/Nationalities: Still **free** with NamePrism (takes ~3 hours)
-- Gender: 10,000 units = **$10** with NamSor (5,000 free + 5,000 paid)
+The package sends names to the provider when you call these functions. The
+examples in the function help show their inputs without making a request;
+the live examples are marked separately.
 
-### Why This Combination?
+## Help and contributions
 
-The package uses **NamePrism** for ethnicity/nationality because it's free and designed for academic research, while using **NamSor v2** for gender because:
-- Gender classification is computationally simpler (1 unit vs 10 units)
-- 5,000 free gender classifications per month covers most research needs
-- NamSor's gender classifier is highly accurate and well-maintained
-
-## Changes in Version 1.0.2
-- Updated NamePrism API calls to use HTTPS (the HTTP endpoints no longer work)
-- Updated NamSor API to v2 with new authentication method
-- The `get_gender()` function now requires only a single `api_key` parameter instead of separate `secret` and `user` parameters
-- Get your NamSor API key at: https://namsor.app/
-
-## Support or Contact
-Please use the issue tracker for problems, questions, or feature requests. If you would rather email with questions or comments, you can contact [Charles Crabtree](mailto:crabtreedcharles@gmail.com) or [Christian Chacua](mailto:christian-mauricio.chacua-delgado@u-bordeaux.fr) and they will try to address the issue.
-
-If you would like to contribute to the package, that is great! We welcome pull requests and new developers.
-
-## Tests
-Users and potential contributors can test the software with the example code provided in the documentation for each function.
+Please use the [issue tracker](https://github.com/lobsterbush/nomine/issues)
+for bugs or questions. You can also email
+[Charles Crabtree](mailto:charles.crabtree@monash.edu) or
+[Christian Chacua](mailto:christian-mauricio.chacua-delgado@u-bordeaux.fr).
+We welcome pull requests.
 
 ## Thanks
 Thanks to [Karl Broman](https://github.com/kbroman) and [Hadley Wickham](https://hadley.nz/) for providing excellent free guides to building R packages.
@@ -161,9 +116,9 @@ Browse the [documentation and function reference](https://lobsterbush.github.io/
 
 **Human – AI (editor) 👤✏️🤖**
 
-All initial versions were created entirely by the human authors, without AI.
-AI was used only for subsequent updates and code fixes. This provenance
-declaration is supplied by Charles Crabtree.
+We wrote every initial version ourselves, without AI. We've used AI only for
+later updates and code fixes. I'm Charles Crabtree, and this is my account of
+how the package was made.
 
 The label follows [The Latent Review’s provenance standard](https://thelatentreview.com/provenance/),
 shared under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
@@ -179,4 +134,4 @@ source(here::here("data-raw", "01_build_site.R"))
 ```
 
 The site is built locally in `docs/`. Publish the rendered contents to the
-`gh-pages` branch; GitHub Pages serves that branch. No Actions workflow is needed.
+`gh-pages` branch; GitHub Pages serves that branch.

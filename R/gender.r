@@ -1,20 +1,23 @@
 #--- Get gender function ---#
-#'@title Classifies names based on gender
-#'@description Returns an object that classifies inputted names according to gender.
+#'@title Request gender predictions from NamSor
+#'@description Sends given and family names to NamSor and returns its gender prediction and scale.
 #'@author Charles Crabtree \email{ccrabtr@umich.edu}
 #'@param given A vector of given names (i.e. first names).
 #'@param family A vector of family names (i.e. surnames or last names).
-#'@param api_key A NameSor API Key. This is typically a long string of mixed-case letters and numbers. Get yours at \url{https://namsor.app/}
-#'@return An object that classifies inputted names according to gender.
+#'@param api_key Your NamSor API key. Get one at \url{https://namsor.app/}
+#'@return A data frame with the input names, API URL, predicted gender and scale.
 #'@examples
-#' \dontrun{
+#' # Prepare input vectors
 #' first_name <- c("Volha", "Charles", "Donald")
 #' last_name <- c("Chykina", "Crabtree", "Duck")
 #'
-#' Note that the vectors of first and last names should be the same length.
-#' Future versions of the package will deal with differing lengths.
+#' # Expected output columns
+#' expected_cols <- c("id", "first_name", "last_name", "api_url", "scale", "gender")
+#' print(expected_cols)
 #'
-#' key <- "45b2kjsskd2335435kkmfdksmfkko"
+#' \dontrun{
+#' # Note: the vectors of first and last names should be the same length.
+#' key <- "YOUR_NAMSOR_API_KEY"
 #' y <- get_gender(first_name, last_name, key)
 #' y
 #' }
