@@ -1,0 +1,59 @@
+# Request nationality probabilities from NamePrism
+
+Sends names to NamePrism and returns probabilities for its 39 leaf
+nationality categories.
+
+## Usage
+
+``` r
+get_nationalities(x, t = NULL, warnings = FALSE)
+```
+
+## Arguments
+
+- x:
+
+  A vector of names, in the form "First_name Last_name". If there are
+  multiple segments separated by white spaces, only the first and the
+  last segments are taken into account.
+
+- t:
+
+  Your NamePrism API token. You must supply one; NULL stops the call.
+  See <https://www.name-prism.com/api> for more details.
+
+- warnings:
+
+  If TRUE, warn when a request fails. The default is FALSE.
+
+## Value
+
+A data frame of dimensions length(x)\*42, with the probability of
+belonging to each of the 39 different leaf CEL groups of the Name-Prism
+taxonomy (see <https://www.name-prism.com/about>). Errors (e.g.
+connection is interrupted, invalid tokens) are handled as NA.
+
+## Author
+
+Charles Crabtree <ccrabtr@umich.edu> and Christian Chacua
+<christian-mauricio.chacua-delgado@u-bordeaux.fr>
+
+## Examples
+
+``` r
+# Prepare input vector of names
+x <- c("Charles Crabtree", "Volha Chykina", "Christian Chacua",
+       "Christian Mauricio Chacua")
+
+# Expected output columns (3 metadata + 39 leaf nationalities)
+n_output_cols <- 42L
+print(n_output_cols)
+
+if (FALSE) { # \dontrun{
+# Using the API token (you should get your own token)
+y <- get_nationalities(x, t = "YOUR_NAMEPRISM_TOKEN", warnings = FALSE)
+y
+# "Christian Chacua" and "Christian Mauricio Chacua" have the same
+# probabilities as "Mauricio" is not taken into account.
+} # }
+```
